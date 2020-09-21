@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { Text, StyleSheet, Button, FlatList, SafeAreaView } from "react-native";
-import NewsContext from "../context/NewsContext";
+import { Context } from "../context/NewsContext";
 
 function HomeScreen() {
-  const { data, addNews } = useContext(NewsContext);
+  const { state, addNews } = useContext(Context);
 
   return (
     <SafeAreaView>
       <Text>Hello</Text>
       <Button title="Add" onPress={() => addNews()} />
       <FlatList
-        data={data}
+        data={state}
         keyExtractor={(post) => post.title}
         renderItem={({ item }) => {
           return <Text>{item.title}</Text>;

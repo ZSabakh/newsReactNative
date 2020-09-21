@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import createContext from "./createContext";
 
-const NewsContext = React.createContext();
-
-export function NewsProvider(props) {
-  const [news, setNews] = useState([]);
-
-  function addNews() {
-    setNews([...news, { title: `News ${news.length + 1}` }]);
+function newsReducer(state, action) {
+  switch (action.type) {
+    case "addNews":
+      return [...state, { title: `News #${state.length + 1}` }];
+    default:
+      return;
   }
-
-  return (
-    <NewsContext.Provider value={{ data: news, addNews: addNews }}>
-      {props.children}
-    </NewsContext.Provider>
-  );
 }
 
-export default NewsContext;
+function addNews(dispatch) {
+  return () => {
+    dispatch({ type: "addNews" });
+  };
+}
+
+export const { Context, Provider } = createContext(
+  newsReducer,
+  { addNews },
+  []
+);

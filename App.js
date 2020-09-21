@@ -2,7 +2,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { NewsProvider } from "./src/context/NewsContext";
+import { Provider } from "./src/context/NewsContext";
 
 const Stack = createStackNavigator();
 function Navigation() {
@@ -15,11 +15,11 @@ function Navigation() {
 
 function App() {
   return (
-    <NewsProvider>
+    <Provider>
       <NavigationContainer>
         <Navigation />
       </NavigationContainer>
-    </NewsProvider>
+    </Provider>
   );
 }
 
